@@ -31,5 +31,7 @@ $f3->route('GET /',
 
 // Counts Untranslated Terms for a specific Locale
 
-
+/**
+ * Run F3 Application
+ */
 $f3->run();
