@@ -1,0 +1,98 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "This file is @generated automatically"
+    ],
+    "hash": "9a03266b5b70a9aa3108fc092fc2e431",
+    "packages": [
+        {
+            "name": "bcosca/fatfree",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/bcosca/fatfree.git",
+                "reference": "5c69a469d8fce406270ee4aa5642870ed9462e42"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/bcosca/fatfree/zipball/5c69a469d8fce406270ee4aa5642870ed9462e42",
+                "reference": "5c69a469d8fce406270ee4aa5642870ed9462e42",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.6"
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "lib/base.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0"
+            ],
+            "description": "A powerful yet easy-to-use PHP micro-framework designed to help you build dynamic and robust Web applications - fast!",
+            "homepage": "http://fatfreeframework.com/",
+            "time": "2015-02-20 17:24:49"
+        },
+        {
+            "name": "moss/locale",
+            "version": "v2.0",
+            "source": {
+                "type": "git",
+                "url": "git@github.com:potfur/moss-locale.git",
+                "reference": "d331628a24fff0c79302e5177ee9313fa86a5b1d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/potfur/moss-locale/zipball/d331628a24fff0c79302e5177ee9313fa86a5b1d",
+                "reference": "d331628a24fff0c79302e5177ee9313fa86a5b1d",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4"
+            },
+            "require-dev": {
+                "phpunit/phpunit": ">=3.7"
+            },
+            "type": "i18n",
+            "autoload": {
+                "psr-0": {
+                    "Moss\\Locale\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Michal Wachowski",
+                    "email": "wachowski.michal@gmail.com"
+                }
+            ],
+            "description": "moss locale",
+            "keywords": [
+                "i18n",
+                "internationalization",
+                "locale",
+                "translation"
+            ],
+            "time": "2015-03-27 10:10:34"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "dev",
+    "stability-flags": {
+        "bcosca/fatfree": 20
+    },
+    "prefer-stable": true,
+    "prefer-lowest": false,
+    "platform": {
+        "php": ">=5.4.0"
+    },
+    "platform-dev": []
+}

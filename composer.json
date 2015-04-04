@@ -1,0 +1,30 @@
+{
+  "name": "marcotroisi/microtranslator",
+  "version": "v0.1",
+  "description": "A Microservice for managing Translations",
+  "keywords": [],
+  "type": "platform",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Marco Troisi",
+      "email": "hello@marcotroisi.com"
+    }
+  ],
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "require": {
+    "php": ">=5.4.0",
+    "bcosca/fatfree": "dev-master",
+    "moss/locale": ">=1"
+  },
+  "require-dev": {
+
+  },
+  "config": {
+    "bin-dir": "bin/"
+  },
+  "autoload": {
+    "psr-4": {"": "src/"}
+  }
+}
