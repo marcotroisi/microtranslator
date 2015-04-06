@@ -1,7 +1,6 @@
 <?php
 /**
- * @author Rocket Internet AG
- * @copyright Copyright (c) 2015 Rocket Internet AG, Johannistraße 20, 10117 Berlin, http://www.rocket-internet.de
+ * @author Marco Troisi
  * @created 04.04.15
  */
 
@@ -18,11 +17,4 @@ interface EntityInterface
      */
     public function getId();
 
-    /**
-     * Sets Document's ID
-     *
-     * @param $id
-     * @return EntityInterface
-     */
-    public function setId($id);
 }
