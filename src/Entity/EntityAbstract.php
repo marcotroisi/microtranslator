@@ -7,7 +7,7 @@
 namespace MicroTranslator\Entity;
 
 
-class EntityAbstract
+abstract class EntityAbstract
 {
 
 }

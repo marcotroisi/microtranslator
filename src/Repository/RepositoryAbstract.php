@@ -1,13 +1,30 @@
 <?php
 /**
- * @author Rocket Internet AG
- * @copyright Copyright (c) 2015 Rocket Internet AG, Johannistraße 20, 10117 Berlin, http://www.rocket-internet.de
+ * @author Marco Troisi
  * @created 04.04.15
  */
 
 namespace MicroTranslator\Repository;
 
 
-class RepositoryAbstract {
+use MicroTranslator\Entity\EntityInterface;
+
+abstract class RepositoryAbstract
+{
+
+    protected $db;
+    protected $collection = '';
+
+    public function __construct($db)
+    {
+        $this->db = $db;
+    }
+
+    public function save(EntityInterface $entity)
+    {
+        $collection = $this->collection;
+
+        $this->db->$collection->save($entity);
+    }
 
 }
