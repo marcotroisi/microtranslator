@@ -26,6 +26,6 @@
     "bin-dir": "bin/"
   },
   "autoload": {
-    "psr-4": {"": "src/"}
+    "psr-4": {"MicroTranslator\\": "src/"}
   }
 }

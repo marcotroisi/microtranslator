@@ -10,7 +10,7 @@ use MongoId;
 
 class Translation extends EntityAbstract implements EntityInterface
 {
-    public $id;
+    public $_id;
     public $word;
     public $locale;
     public $translation;
@@ -22,7 +22,7 @@ class Translation extends EntityAbstract implements EntityInterface
      */
     public function getId()
     {
-        return $this->id;
+        return $this->_id;
     }
 
     /**
@@ -33,6 +33,6 @@ class Translation extends EntityAbstract implements EntityInterface
      */
     public function setId($id)
     {
-        $this->id = $id;
+        $this->_id = $id;
     }
 }

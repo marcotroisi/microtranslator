@@ -17,4 +17,12 @@ interface EntityInterface
      */
     public function getId();
 
+    /**
+     * Sets Document's ID
+     *
+     * @param $id
+     * @return EntityInterface
+     */
+    public function setId($id);
+
 }

@@ -9,18 +9,15 @@ require 'vendor/autoload.php';
 $f3 = Base::instance();
 
 /**
- * Mongo
+ * Mongo Connection
  */
 $m = new MongoClient();
 $db = $m->selectDB('microtranslator');
 
-$translation = [
-    'word' => 'Hello',
-    'locale' => 'de',
-    'translation' => 'Hallo'
-];
-
-$db->translations->save($translation);
+/**
+ * Translation Service
+ */
+$translationService = new \MicroTranslator\Service\Translation(new \MicroTranslator\Repository\Translation($db));
 
 /**
  * Routes

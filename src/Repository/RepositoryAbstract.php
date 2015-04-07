@@ -24,6 +24,10 @@ abstract class RepositoryAbstract
     {
         $collection = $this->collection;
 
+        if ($entity->getId() == null) {
+            $entity->setId(new \MongoId());
+        }
+
         $this->db->$collection->save($entity);
     }
 
