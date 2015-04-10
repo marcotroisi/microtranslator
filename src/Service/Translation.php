@@ -26,4 +26,17 @@ class Translation {
     {
         $this->translationRepository->save($entity);
     }
+
+    public function getAvailableLocales()
+    {
+        $cursor = $this->translationRepository->find([], ['locale' => 1]);
+
+        $result = [];
+
+        foreach ($cursor as $res) {
+            $result[] = $res;
+        }
+
+        return $result;
+    }
 }

@@ -31,6 +31,12 @@ $f3->route('GET /',
 );
 
 // Gets All Available Locales
+$f3->route('GET /locale',
+    function() use ($translationService) {
+        $localeController = new \MicroTranslator\Controller\LocaleController($translationService);
+        return $localeController->showAllAvailable();
+    }
+);
 
 // Gets All Terms for a specific Locale
 

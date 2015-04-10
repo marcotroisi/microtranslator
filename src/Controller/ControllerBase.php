@@ -7,6 +7,7 @@
 namespace MicroTranslator\Controller;
 
 
-class ControllerBase {
+class ControllerBase
+{
 
 }
