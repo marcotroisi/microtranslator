@@ -20,6 +20,12 @@ $db = $m->selectDB('microtranslator');
 $translationService = new \MicroTranslator\Service\Translation(new \MicroTranslator\Repository\Translation($db));
 
 /**
+ * Controllers
+ */
+$localeController = new \MicroTranslator\Controller\LocaleController($translationService);
+$translationController = new \MicroTranslator\Controller\TranslationController($translationService);
+
+/**
  * Routes
  */
 
@@ -32,21 +38,26 @@ $f3->route('GET /',
 
 // Gets All Available Locales
 $f3->route('GET /locale',
-    function() use ($translationService) {
-        $localeController = new \MicroTranslator\Controller\LocaleController($translationService);
+    function() use ($localeController) {
         return $localeController->showAllAvailable();
     }
 );
 
 // Gets All Terms for a specific Locale
-
-// Counts All Terms for a specific Locale
+$f3->route('GET /translation/@locale',
+    function($f3, $params) use ($translationController) {
+        return $translationController->show($params['locale']);
+    }
+);
 
 // Gets a Term for a specific Locale
+$f3->route('GET /translation/@locale/@term',
+    function($f3, $params) use ($translationController) {
+        return $translationController->show($params['locale'], $params['term']);
+    }
+);
 
 // Gets Untranslated Terms for a specific Locale
-
-// Counts Untranslated Terms for a specific Locale
 
 /**
  * Run F3 Application

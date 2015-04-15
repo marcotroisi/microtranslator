@@ -39,7 +39,7 @@ abstract class RepositoryAbstract
         $this->db->$collection->save($entity);
     }
 
-    public function find($query, $fields)
+    public function find($query, $fields = [])
     {
         $collection = $this->collection;
 

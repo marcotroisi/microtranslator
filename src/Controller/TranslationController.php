@@ -1,7 +1,7 @@
 <?php
 /**
  * @author Marco Troisi
- * @created 10.04.15
+ * @created 15.04.15
  */
 
 namespace MicroTranslator\Controller;
@@ -9,7 +9,7 @@ namespace MicroTranslator\Controller;
 use MicroTranslator\Service\Translation as TranslationService;
 
 
-class LocaleController extends ControllerBase
+class TranslationController extends ControllerBase
 {
     /**
      * @var TranslationService
@@ -22,15 +22,15 @@ class LocaleController extends ControllerBase
         $this->translationService = $translationService;
     }
     
-    public function showAllAvailable()
+    public function show($locale, $term = "")
     {
-        $locales = $this->translationService->getAvailableLocales();
+        $words = $this->translationService->show($locale, $term);
 
-        $count = $this->translationService->countAvailableLocales();
+        $count = $this->translationService->count($locale, $term);
 
         $result = [
-            'items' => $locales,
-            'count' => $count
+            'items' => $words,
+            'total' => $count
         ];
 
         echo json_encode($result);
