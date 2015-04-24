@@ -8,6 +8,7 @@ namespace MicroTranslator\Service;
 
 use MicroTranslator\Repository\Translation as TranslationRepository;
 use MicroTranslator\Entity\Translation as TranslationEntity;
+use Moss\Locale\Translator\Translator;
 
 
 class Translation {
@@ -16,13 +17,21 @@ class Translation {
      * @var TranslationRepository
      */
     private $translationRepository;
+    /**
+     * @var Translator
+     */
+    private $translator;
 
     /**
      * @param TranslationRepository $translationRepository
+     * @param Translator $translator
      */
-    public function __construct(TranslationRepository $translationRepository)
-    {
+    public function __construct(
+        TranslationRepository $translationRepository,
+        Translator $translator
+    ) {
         $this->translationRepository = $translationRepository;
+        $this->translator = $translator;
     }
 
     /**
@@ -63,19 +72,14 @@ class Translation {
     {
         $search['locale'] = $locale;
 
-        if ($word != "") {
-            $search['word'] = $word;
-        }
-
-        $cursor = $this->translationRepository->find($search);
-
-        $result = [];
-
-        foreach ($cursor as $res) {
-            $result[] = $res;
-        }
+        $result = [$word => $this->translator->trans($word)];
 
         return $result;
+    }
+
+    public function showAll()
+    {
+        return $this->translator->dictionary()->getTranslations();
     }
 
     /**

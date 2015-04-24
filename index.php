@@ -14,10 +14,17 @@ $f3 = Base::instance();
 $m = new MongoClient();
 $db = $m->selectDB('microtranslator');
 
+$locale = (isset($_GET['locale'])) ? $_GET['locale'] : 'en_GB';
+$mongoDictionary = new \MicroTranslator\Library\MongoDictionary($locale, $db, 'translations', 'word', 'translation');
+$translator = new \Moss\Locale\Translator\Translator($locale, $mongoDictionary);
+
 /**
  * Translation Service
  */
-$translationService = new \MicroTranslator\Service\Translation(new \MicroTranslator\Repository\Translation($db));
+$translationService = new \MicroTranslator\Service\Translation(
+    new \MicroTranslator\Repository\Translation($db),
+    $translator
+);
 
 /**
  * Controllers
@@ -44,16 +51,16 @@ $f3->route('GET /locale',
 );
 
 // Gets All Terms for a specific Locale
-$f3->route('GET /translation/@locale',
-    function($f3, $params) use ($translationController) {
-        return $translationController->show($params['locale']);
+$f3->route('GET /translation',
+    function($f3, $params) use ($translationController, $locale) {
+        return $translationController->show($locale);
     }
 );
 
 // Gets a Term for a specific Locale
-$f3->route('GET /translation/@locale/@term',
-    function($f3, $params) use ($translationController) {
-        return $translationController->show($params['locale'], $params['term']);
+$f3->route('GET /translation/@term',
+    function($f3, $params) use ($translationController, $locale) {
+        return $translationController->show($locale, $params['term']);
     }
 );
 

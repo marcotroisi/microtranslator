@@ -24,12 +24,16 @@ class TranslationController extends ControllerBase
     
     public function show($locale, $term = "")
     {
-        $words = $this->translationService->show($locale, $term);
+        if ($term != "") {
+            $words = $this->translationService->show($locale, $term);
+        } else {
+            $words = $this->translationService->showAll();
+        }
 
         $count = $this->translationService->count($locale, $term);
 
         $result = [
-            'items' => $words,
+            'items' => [$words],
             'total' => $count
         ];
 

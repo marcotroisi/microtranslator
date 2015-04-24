@@ -46,6 +46,13 @@ abstract class RepositoryAbstract
         return $this->db->$collection->find($query, $fields);
     }
 
+    public function findOne($query, $fields = [])
+    {
+        $collection = $this->collection;
+
+        return $this->db->$collection->findOne($query, $fields);
+    }
+
     public function count($query)
     {
         $collection = $this->collection;
