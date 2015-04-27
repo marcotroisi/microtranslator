@@ -92,3 +92,11 @@ what it will feature:
 - POST addition/updating of terms
 - A frontend UI for adding/updating terms (on a separate repository)
 - Some other interesting things!
+
+# Questions?
+
+Please send me an email at hello@marcotroisi.com in order to ask your questions about MicroTranslator.
+
+# Ideas? Found a bug?
+
+Feel free to open a Github issue or even to fork and create a Pull Request.
