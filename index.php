@@ -39,7 +39,7 @@ $translationController = new \MicroTranslator\Controller\TranslationController($
 // Home
 $f3->route('GET /',
     function() {
-        echo 'Hello, world!';
+        echo 'MicroTranslator';
     }
 );
 
