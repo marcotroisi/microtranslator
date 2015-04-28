@@ -57,25 +57,22 @@ $f3->route('GET /translation',
     }
 );
 
-// Gets a Term for a specific Locale
-$f3->route('GET /translation/@term',
+// Gets or inserts/updates a Term for a specific Locale
+$f3->route('GET|POST /translation/@word',
     function($f3, $params) use ($translationController, $locale) {
-        return $translationController->show($locale, $params['term']);
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $translation = $f3->get('POST.translation');
+            $word = $params['word'];
+
+            return $translationController->save($word, $locale, $translation);
+        } 
+
+        return $translationController->show($locale, $params['word']);
     }
 );
 
 // Gets Untranslated Terms for a specific Locale
-
-// Save a Term for a Locale
-$f3->route('POST /translation/@word',
-    function($f3, $params) use ($translationController, $locale) {
-
-        $translation = $f3->get('POST.translation');
-        $word = $params['word'];
-
-        return $translationController->save($word, $locale, $translation);
-    }
-);
 
 /**
  * Run F3 Application
