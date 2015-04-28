@@ -88,7 +88,7 @@ To insert a new term, or update an existing one, use the following:
 
     POST /translation/Good+morning?locale=es_ES
     
-with POST parameter `translation` (e.g. `{ translation: Buenas Dias"}`) 
+with POST parameter `translation` (e.g. `{ translation: "Buenas Dias"}`) 
     
 The result will be a `true` or `false` value, based on the success of the operation.
 
