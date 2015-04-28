@@ -66,6 +66,17 @@ $f3->route('GET /translation/@term',
 
 // Gets Untranslated Terms for a specific Locale
 
+// Save a Term for a Locale
+$f3->route('POST /translation/@word',
+    function($f3, $params) use ($translationController, $locale) {
+
+        $translation = $f3->get('POST.translation');
+        $word = $params['word'];
+
+        return $translationController->save($word, $locale, $translation);
+    }
+);
+
 /**
  * Run F3 Application
  */

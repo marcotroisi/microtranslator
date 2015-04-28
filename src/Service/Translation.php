@@ -36,10 +36,16 @@ class Translation {
 
     /**
      * @param TranslationEntity $entity
+     * @return array|bool
      */
     public function save(TranslationEntity $entity)
     {
-        $this->translationRepository->save($entity);
+        return $this->translationRepository->save($entity);
+    }
+
+    public function update($criteria, TranslationEntity $entity, $options)
+    {
+        return $this->translationRepository->update($criteria, $entity, $options);
     }
 
     /**

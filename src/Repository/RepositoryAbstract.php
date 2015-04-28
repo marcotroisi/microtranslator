@@ -28,6 +28,10 @@ abstract class RepositoryAbstract
         $this->db = $db;
     }
 
+    /**
+     * @param EntityInterface $entity
+     * @return array|bool
+     */
     public function save(EntityInterface $entity)
     {
         $collection = $this->collection;
@@ -36,7 +40,17 @@ abstract class RepositoryAbstract
             $entity->setId(new \MongoId());
         }
 
-        $this->db->$collection->save($entity);
+        return $this->db->$collection->save($entity);
+    }
+
+    public function update($criteria, EntityInterface $entity, $options)
+    {
+        $collection = $this->collection;
+
+        $entityArray = get_object_vars($entity);
+        unset($entityArray['_id']);
+
+        return $this->db->$collection->update($criteria, $entityArray, $options);
     }
 
     public function find($query, $fields = [])

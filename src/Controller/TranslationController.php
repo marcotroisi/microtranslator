@@ -6,6 +6,7 @@
 
 namespace MicroTranslator\Controller;
 
+use MicroTranslator\Entity\Translation;
 use MicroTranslator\Service\Translation as TranslationService;
 
 
@@ -40,5 +41,31 @@ class TranslationController extends ControllerBase
         echo json_encode($result);
 
         return true;
+    }
+
+    /**
+     * @param $word
+     * @param $locale
+     * @param $term
+     * @return $this
+     */
+    public function save($word, $locale, $term)
+    {
+        $translation = new Translation();
+        $translation->translation = $term;
+        $translation->word = $word;
+        $translation->locale = $locale;
+
+        $criteria = [
+            'word' => $word,
+            'locale' => $locale
+        ];
+
+        $result = $this->translationService->update($criteria, $translation, ['upsert' => true]);
+
+        echo json_encode((bool) $result['ok']);
+
+        return true;
+
     }
 }

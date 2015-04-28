@@ -82,6 +82,16 @@ The result will be:
 }
 ```
 
+## Insert/Update a term for a given locale
+
+To insert a new term, or update an existing one, use the following:
+
+    POST /translation/Good+morning?locale=es_ES
+    
+with POST parameter `translation` (e.g. `{ translation: Buenas Dias"}`) 
+    
+The result will be a `true` or `false` value, based on the success of the operation.
+
 # Future
 
 As you may have noticed, there is still work necessary in order for MicroTranslator to get where it should. In the future, that's 
@@ -89,7 +99,6 @@ what it will feature:
 
 - Authentication
 - Docker integration
-- POST addition/updating of terms
 - A frontend UI for adding/updating terms (on a separate repository)
 - Some other interesting things!
 
