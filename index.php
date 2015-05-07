@@ -38,8 +38,12 @@ $translationController = new \MicroTranslator\Controller\TranslationController($
 
 // Home
 $f3->route('GET /',
-    function() {
+    function() use ($translationService) {
         echo 'MicroTranslator';
+
+        $translationEntity = new \MicroTranslator\Entity\Translation();
+        $result = $translationService->save($translationEntity);
+        var_dump($result);
     }
 );
 
