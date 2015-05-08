@@ -43,6 +43,12 @@ class Translation {
         return $this->translationRepository->save($entity);
     }
 
+    /**
+     * @param $criteria
+     * @param TranslationEntity $entity
+     * @param $options
+     * @return bool
+     */
     public function update($criteria, TranslationEntity $entity, $options)
     {
         return $this->translationRepository->update($criteria, $entity, $options);

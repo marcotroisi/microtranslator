@@ -45,4 +45,16 @@ class TranslationServiceTest extends \PHPUnit_Framework_TestCase
 
         $this->translationService->save($translationEntity);
     }
+
+    public function testUpdate()
+    {
+        $translationEntity = $this->getMock('\MicroTranslator\Entity\Translation');
+
+        $criteria = ['_id' => 1];
+        $options = ['upsert' => true];
+
+        $this->translationRepository->expects($this->once())->method('update')->with($criteria, $translationEntity, $options);
+
+        $this->translationService->update($criteria, $translationEntity, $options);
+    }
 }
