@@ -40,9 +40,6 @@ $translationController = new \MicroTranslator\Controller\TranslationController($
 $f3->route('GET /',
     function() use ($translationService) {
         echo 'MicroTranslator';
-
-        $result = $translationService->getAvailableLocales();
-        var_dump($result);
     }
 );
 
