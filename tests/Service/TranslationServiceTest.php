@@ -57,4 +57,27 @@ class TranslationServiceTest extends \PHPUnit_Framework_TestCase
 
         $this->translationService->update($criteria, $translationEntity, $options);
     }
+
+    public function testGetAvailableLocales()
+    {
+        $expectedResult = ['de_DE'];
+
+        $mongoResult = [
+            'values' => ['de_DE'],
+            'stats' => [
+                'n' => 2,
+                'nscanned' => 0,
+                'nscannedObjects' => 2,
+                'timems' => 0,
+                'planSummary' => 'COLLSCAN'
+            ],
+            'ok' => 1
+        ];
+
+        $this->translationRepository->expects($this->once())->method('distinct')->with('locale')->willReturn($mongoResult);
+
+        $result = $this->translationService->getAvailableLocales();
+
+        $this->assertEquals($expectedResult, $result);
+    }
 }

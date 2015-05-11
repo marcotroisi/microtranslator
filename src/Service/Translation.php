@@ -59,11 +59,15 @@ class Translation {
      */
     public function getAvailableLocales()
     {
-        $cursor = $this->translationRepository->find([], ['locale' => 1]);
+        $cursor = $this->translationRepository->distinct('locale');
+
+        if (!$cursor) {
+            return $cursor;
+        }
 
         $result = [];
 
-        foreach ($cursor as $res) {
+        foreach ($cursor['values'] as $res) {
             $result[] = $res;
         }
 
