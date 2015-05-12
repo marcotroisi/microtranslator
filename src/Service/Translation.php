@@ -93,6 +93,9 @@ class Translation {
         return $result;
     }
 
+    /**
+     * @return array
+     */
     public function showAll()
     {
         return $this->translator->dictionary()->getTranslations();
