@@ -82,17 +82,6 @@ class TranslationServiceTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($expectedResult, $result);
     }
 
-    public function testCountAvailableLocales()
-    {
-        $expectedResult = 1;
-
-        $this->translationRepository->expects($this->once())->method('count')->willReturn($expectedResult);
-
-        $result = $this->translationService->countAvailableLocales();
-
-        $this->assertEquals($result, $expectedResult);
-    }
-
     public function testShow()
     {
         $locale = 'de_DE';
