@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <title>Microtranslator by marcotroisi</title>
+  </head>
+
+  <body>
+    <header>
+      <div class="inner">
+        <h1>Microtranslator</h1>
+        <h2>A Microservice for managing Translations in your application</h2>
+        <a href="https://github.com/marcotroisi/microtranslator" class="button"><small>View project on</small> GitHub</a>
+      </div>
+    </header>
+
+    <div id="content-wrapper">
+      <div class="inner clearfix">
+        <section id="main-content">
+          <h1>
+<a id="microtranslator" class="anchor" href="#microtranslator" aria-hidden="true"><span class="octicon octicon-link"></span></a>MicroTranslator</h1>
+
+<p>A PHP Microservice for managing Translations in your application. You can set it up anywhere in your stack 
+and use it to <em>upload</em> and <em>download</em> translations.</p>
+
+<hr>
+
+<h1>
+<a id="introduction" class="anchor" href="#introduction" aria-hidden="true"><span class="octicon octicon-link"></span></a>Introduction</h1>
+
+<p>MicroTranslator is written in PHP, and currently uses MongoDB as its storage engine. For more details, feel free to head over
+the <a href="http://www.marcotroisi.com/an-example-of-a-microservice/">article on Marco Troisi's blog</a>. The source code is being released 
+under the <strong>MIT Licence</strong>, which means you are free to reuse, modify and even sell your work based on it. If you do any of the above 
+listed actions, please consider <a href="http://www.twitter.com/marcotroisi">following its creator on Twitter</a> as a way to say <strong>thanks</strong>!</p>
+
+<h1>
+<a id="usage" class="anchor" href="#usage" aria-hidden="true"><span class="octicon octicon-link"></span></a>Usage</h1>
+
+<h2>
+<a id="show-all-available-locales" class="anchor" href="#show-all-available-locales" aria-hidden="true"><span class="octicon octicon-link"></span></a>Show all available locales</h2>
+
+<p>To see all locales available (e.g. en_GB, de_DE, af_ZA, etc.), just fire up the following request:</p>
+
+<pre><code>GET /locale
+</code></pre>
+
+<p>and you will get a nice JSON response that looks like this:</p>
+
+<div class="highlight highlight-json"><pre>{<span class="pl-s"><span class="pl-pds">"</span>items<span class="pl-pds">"</span></span>:
+    [{
+        <span class="pl-s"><span class="pl-pds">"</span>_id<span class="pl-pds">"</span></span>:{<span class="pl-s"><span class="pl-pds">"</span>$id<span class="pl-pds">"</span></span>:<span class="pl-s"><span class="pl-pds">"</span>552384e6e02f4fe237c925d0<span class="pl-pds">"</span></span>},
+        <span class="pl-s"><span class="pl-pds">"</span>locale<span class="pl-pds">"</span></span>:<span class="pl-s"><span class="pl-pds">"</span>de_DE<span class="pl-pds">"</span></span>
+    }, 
+    {
+        <span class="pl-s"><span class="pl-pds">"</span>_id<span class="pl-pds">"</span></span>:{<span class="pl-s"><span class="pl-pds">"</span>$id<span class="pl-pds">"</span></span>:<span class="pl-s"><span class="pl-pds">"</span>552384e6e02f4fe237c925d1<span class="pl-pds">"</span></span>},
+        <span class="pl-s"><span class="pl-pds">"</span>locale<span class="pl-pds">"</span></span>:<span class="pl-s"><span class="pl-pds">"</span>en_GB<span class="pl-pds">"</span></span>
+    }],
+    <span class="pl-s"><span class="pl-pds">"</span>count<span class="pl-pds">"</span></span>:<span class="pl-c1">2</span>
+}</pre></div>
+
+<p>As you can see, the response will normally have an <code>items</code> section, with the actual result, and a <code>count</code> value, which will always
+represent the integer number of results.</p>
+
+<h2>
+<a id="show-all-terms-for-a-given-locale" class="anchor" href="#show-all-terms-for-a-given-locale" aria-hidden="true"><span class="octicon octicon-link"></span></a>Show all terms for a given locale</h2>
+
+<p>In order to see all the terms (available, translated words) for a given locale (e.g. de_DE), just do:</p>
+
+<pre><code>GET /translation?locale=de_DE
+</code></pre>
+
+<p>The result will be something like this:</p>
+
+<div class="highlight highlight-json"><pre>{<span class="pl-s"><span class="pl-pds">"</span>items<span class="pl-pds">"</span></span>:
+    [{
+        <span class="pl-s"><span class="pl-pds">"</span>Good morning<span class="pl-pds">"</span></span>:<span class="pl-s"><span class="pl-pds">"</span>Guten Tag<span class="pl-pds">"</span></span>
+    },
+    {
+        <span class="pl-s"><span class="pl-pds">"</span>Hello<span class="pl-pds">"</span></span>:<span class="pl-s"><span class="pl-pds">"</span>Hallo<span class="pl-pds">"</span></span>
+    }],
+    <span class="pl-s"><span class="pl-pds">"</span>total<span class="pl-pds">"</span></span>:<span class="pl-c1">2</span>
+}</pre></div>
+
+<p>At the moment, <em>en_GB</em> is the default locale, in case you don't specify your <code>locale</code> parameter.</p>
+
+<h2>
+<a id="show-a-single-term-for-a-given-locale" class="anchor" href="#show-a-single-term-for-a-given-locale" aria-hidden="true"><span class="octicon octicon-link"></span></a>Show a single term for a given locale</h2>
+
+<p>In order to see only one term (e.g. "Good morning") for a given locale (e.g. it_IT), you can call:</p>
+
+<pre><code>GET /translation/Good+morning?locale=it_IT
+</code></pre>
+
+<p>The result will be:</p>
+
+<div class="highlight highlight-json"><pre>{<span class="pl-s"><span class="pl-pds">"</span>items<span class="pl-pds">"</span></span>:
+    [{
+        <span class="pl-s"><span class="pl-pds">"</span>Good morning<span class="pl-pds">"</span></span>:<span class="pl-s"><span class="pl-pds">"</span>Buongiorno<span class="pl-pds">"</span></span>
+    }],
+    <span class="pl-s"><span class="pl-pds">"</span>total<span class="pl-pds">"</span></span>:<span class="pl-c1">1</span>
+}</pre></div>
+
+<h2>
+<a id="insertupdate-a-term-for-a-given-locale" class="anchor" href="#insertupdate-a-term-for-a-given-locale" aria-hidden="true"><span class="octicon octicon-link"></span></a>Insert/Update a term for a given locale</h2>
+
+<p>To insert a new term, or update an existing one, use the following:</p>
+
+<pre><code>POST /translation/Good+morning?locale=es_ES
+</code></pre>
+
+<p>with POST parameter <code>translation</code> (e.g. <code>{ translation: "Buenas Dias"}</code>) </p>
+
+<p>The result will be a <code>true</code> or <code>false</code> value, based on the success of the operation.</p>
+
+<h1>
+<a id="future" class="anchor" href="#future" aria-hidden="true"><span class="octicon octicon-link"></span></a>Future</h1>
+
+<p>As you may have noticed, there is still work necessary in order for MicroTranslator to get where it should. In the future, that's 
+what it will feature:</p>
+
+<ul>
+<li>Authentication</li>
+<li>Docker integration</li>
+<li>A frontend UI for adding/updating terms (on a separate repository)</li>
+<li>Some other interesting things!</li>
+</ul>
+
+<h1>
+<a id="questions" class="anchor" href="#questions" aria-hidden="true"><span class="octicon octicon-link"></span></a>Questions?</h1>
+
+<p>Please send me an email at <a href="mailto:hello@marcotroisi.com">hello@marcotroisi.com</a> in order to ask your questions about MicroTranslator.</p>
+
+<h1>
+<a id="ideas-found-a-bug" class="anchor" href="#ideas-found-a-bug" aria-hidden="true"><span class="octicon octicon-link"></span></a>Ideas? Found a bug?</h1>
+
+<p>Feel free to open a Github issue or even to fork and create a Pull Request.</p>
+        </section>
+
+        <aside id="sidebar">
+          <a href="https://github.com/marcotroisi/microtranslator/zipball/master" class="button">
+            <small>Download</small>
+            .zip file
+          </a>
+          <a href="https://github.com/marcotroisi/microtranslator/tarball/master" class="button">
+            <small>Download</small>
+            .tar.gz file
+          </a>
+
+          <p class="repo-owner"><a href="https://github.com/marcotroisi/microtranslator"></a> is maintained by <a href="https://github.com/marcotroisi">marcotroisi</a>.</p>
+
+          <p>This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the Architect theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.</p>
+        </aside>
+      </div>
+    </div>
+
+  
+  </body>
+</html>
