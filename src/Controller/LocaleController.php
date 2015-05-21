@@ -26,7 +26,7 @@ class LocaleController extends ControllerBase
     {
         $locales = $this->translationService->getAvailableLocales();
 
-        $count = $this->translationService->countAvailableLocales();
+        $count = count($locales);
 
         $result = [
             'items' => $locales,

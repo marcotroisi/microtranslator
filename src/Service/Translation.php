@@ -74,11 +74,6 @@ class Translation {
         return $result;
     }
 
-    public function countAvailableLocales()
-    {
-        return $this->translationRepository->count([]);
-    }
-
     /**
      * @param $locale
      * @param string $word
@@ -106,11 +101,15 @@ class Translation {
      * @param string $word
      * @return int
      */
-    public function count($locale, $word = "")
+    public function count($locale = "", $word = "")
     {
-        $search['locale'] = $locale;
+        $search = [];
 
-        if ($word != "") {
+        if ($locale !== "") {
+            $search['locale'] = $locale;
+        }
+
+        if ($word !== "") {
             $search['word'] = $word;
         }
 

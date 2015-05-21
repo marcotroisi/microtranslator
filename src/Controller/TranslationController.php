@@ -23,7 +23,7 @@ class TranslationController extends ControllerBase
         $this->translationService = $translationService;
     }
     
-    public function show($locale, $term = "")
+    public function show($locale = "", $term = "")
     {
         if ($term != "") {
             $words = $this->translationService->show($locale, $term);

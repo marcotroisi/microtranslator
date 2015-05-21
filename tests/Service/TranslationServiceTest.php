@@ -8,6 +8,7 @@ namespace MicroTranslator\Test;
 
 
 use MicroTranslator\Service\Translation;
+use Moss\Locale\Translator\Translator;
 
 class TranslationServiceTest extends \PHPUnit_Framework_TestCase
 {
@@ -22,7 +23,7 @@ class TranslationServiceTest extends \PHPUnit_Framework_TestCase
     private $translationRepository;
 
     /**
-     * @var \PHPUnit_Framework_MockObject_MockObject
+     * @var Translator | \PHPUnit_Framework_MockObject_MockObject
      */
     private $translator;
 
@@ -92,5 +93,16 @@ class TranslationServiceTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($result, $expectedResult);
     }
 
+    public function testShow()
+    {
+        $locale = 'de_DE';
+        $word = 'Good morning';
+
+        $this->translator->expects($this->once())->method('trans')->with($word)->willReturn('Guten morgen');
+
+        $result = $this->translationService->show($locale, $word);
+
+        $this->assertEquals([$word => 'Guten morgen'], $result);
+    }
 
 }
