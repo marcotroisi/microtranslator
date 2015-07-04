@@ -60,6 +60,13 @@ abstract class RepositoryAbstract
         return $this->db->$collection->find($query, $fields);
     }
 
+    public function distinct($field)
+    {
+        $collection = $this->collection;
+
+        return $this->db->command(['distinct' => $collection, 'key' => $field]);
+    }
+
     public function findOne($query, $fields = [])
     {
         $collection = $this->collection;

@@ -38,7 +38,7 @@ $translationController = new \MicroTranslator\Controller\TranslationController($
 
 // Home
 $f3->route('GET /',
-    function() {
+    function() use ($translationService) {
         echo 'MicroTranslator';
     }
 );
@@ -50,10 +50,10 @@ $f3->route('GET /locale',
     }
 );
 
-// Gets All Terms for a specific Locale
+// Gets All Terms
 $f3->route('GET /translation',
-    function($f3, $params) use ($translationController, $locale) {
-        return $translationController->show($locale);
+    function($f3, $params) use ($translationController) {
+        return $translationController->show();
     }
 );
 

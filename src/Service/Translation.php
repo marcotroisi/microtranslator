@@ -43,6 +43,12 @@ class Translation {
         return $this->translationRepository->save($entity);
     }
 
+    /**
+     * @param $criteria
+     * @param TranslationEntity $entity
+     * @param $options
+     * @return bool
+     */
     public function update($criteria, TranslationEntity $entity, $options)
     {
         return $this->translationRepository->update($criteria, $entity, $options);
@@ -53,20 +59,19 @@ class Translation {
      */
     public function getAvailableLocales()
     {
-        $cursor = $this->translationRepository->find([], ['locale' => 1]);
+        $cursor = $this->translationRepository->distinct('locale');
+
+        if (!$cursor) {
+            return $cursor;
+        }
 
         $result = [];
 
-        foreach ($cursor as $res) {
+        foreach ($cursor['values'] as $res) {
             $result[] = $res;
         }
 
         return $result;
-    }
-
-    public function countAvailableLocales()
-    {
-        return $this->translationRepository->count([]);
     }
 
     /**
@@ -83,6 +88,9 @@ class Translation {
         return $result;
     }
 
+    /**
+     * @return array
+     */
     public function showAll()
     {
         return $this->translator->dictionary()->getTranslations();
@@ -93,11 +101,15 @@ class Translation {
      * @param string $word
      * @return int
      */
-    public function count($locale, $word = "")
+    public function count($locale = "", $word = "")
     {
-        $search['locale'] = $locale;
+        $search = [];
 
-        if ($word != "") {
+        if ($locale !== "") {
+            $search['locale'] = $locale;
+        }
+
+        if ($word !== "") {
             $search['word'] = $word;
         }
 
